@@ -1,0 +1,213 @@
+
+.quiz {
+    display : table;
+    width   : 100%;
+    height  : 100vh;
+
+    .quiz-wrapper {
+        display        : table-cell;
+        vertical-align : middle;
+        position       : relative;
+        padding        : 2rem;
+        width          : 70%;
+    }
+
+    .quiz-header { text-align : center; }
+
+    .quiz-headertitle {
+        color        : rgba(255, 20, 147, .9);
+        font-size    : 5rem;
+        display      : inline-block;
+        margin       : 0;
+    }
+
+    .quiz-headertxt {
+        font-family : 'Dancing Script', cursive;
+        color       : #FFF;
+        font-size   : 3rem;
+    }
+
+    .quiz-content {
+        position         : relative;
+        width            : 100%;
+        height           : 41rem;
+        overflow         : hidden;
+        background-color : #FFF;
+
+        &.active {
+            .quiz-question { transform : translateX(-100%); }
+            .quiz-answer   { transform : translateX(0); background-color : rgba(255, 20, 147, .9); }
+            .box-quiz-btn  { transform : translateX(-100%); }
+        }
+    }
+
+    .quiz-question,
+    .quiz-answer {
+        position : absolute;
+        display  : table;
+        width    : 50%;
+        height   : 100%;
+        top      : 0;
+        bottom   : 0;
+        left     : 50%;
+    }
+
+    .quiz-question {
+        transition : transform .3s ;
+        transform  : translateX(-50%);
+
+        .center-item { text-align : left; }
+    }
+
+    .quiz-answer {
+        transform        : translateX(100%);
+        background-color : rgba(255, 20, 147, .9);
+        transition       : transform .3s linear .1s, background-color .4s linear .2s;
+
+        .center-item { text-align : center; }
+    }
+
+    .center-box {
+        display        : table-cell;
+        vertical-align : middle;
+        padding        : 5rem;
+        text-align     : center;
+    }
+
+    .center-item {
+        display    : inline-block;
+        text-align : center;
+    }
+
+    .quiz-txt,
+    .quiz-txtanswser {
+        font-size   : 2.1rem;
+        line-height : 2.7rem;
+    }
+
+    .quiz-txt,
+    .quiz-txtquestion { color : grey; }
+
+    .quiz-txtquestion {
+        font-family : 'Dancing Script', cursive;
+        font-size   : 2.7rem;
+        margin-top  : 0;
+    }
+    // .box-input { text-align : center; }
+
+    .quiz-pinktxt {
+        font-family : 'Dancing Script', cursive;
+        margin-top  : 0;
+        color       : #bd25af;
+        font-size   : 5rem;
+    }
+
+    .quiz-txtanswser {
+        font-family : 'Dancing Script', cursive;
+        color       : #FFF;
+        display     : block;
+        margin-top  : 1rem;
+        font-size   : 3rem;
+    }
+
+    .box-quiz-btn {
+        margin     : 3rem auto 0;
+        text-align : center;
+        transition : transform .3s linear;
+    }
+
+    .quiz-btn {
+        display          : inline-block;
+        padding          : 1rem 2rem;
+        color            : #FFF;
+        border           : none;
+        border-radius    : 2rem;
+        background-color : rgba(255, 20, 147, .7);
+        transition       : background-color .3s;
+
+        &:hover { background-color : rgba(255, 20, 147, 1); }
+    }
+
+    /* Cachons la case à cocher */
+    .quiz-checkbox:not(:checked),
+    .quiz-checkbox:checked {
+        position : absolute;
+        left     : -9999rem;
+    }
+
+    /* on prépare le label */
+    .quiz-checkbox:not(:checked) + label,
+    .quiz-checkbox:checked + label {
+        position     : relative; /* permet de positionner les pseudo-éléments */
+        padding-left : 3rem; /* fait un peu d'espace pour notre case à venir */
+        cursor       : pointer;    /* affiche un curseur adapté */
+        margin-left  : 3rem;
+    }
+
+    .quiz-checkbox:not(:checked) + label:before,
+    .quiz-checkbox:checked + label:before {
+        content          : '';
+        position         : absolute;
+        left             : 0;
+        top              : 50%;
+        margin-top: -.8rem;
+        width            : 1.6rem;
+        height           : 1.6rem;
+        border-radius    : 50%;
+        background-color : grey;
+    }
+
+      /* Aspect général de la coche */
+    .quiz-checkbox:not(:checked) + label:after,
+    .quiz-checkbox:checked + label:after {
+        content          : '';
+        position         : absolute;
+        left             : .2rem;
+        top              : 50%;
+        margin-top              : -.6rem;
+        width            : 1.2rem;
+        height           : 1.2rem;
+        border-radius    : 50%;
+        background-color : rgba(255, 20, 147, .7);
+        transition       : all .2s; /* on prévoit une animation */
+    }
+
+    /* Aspect si "pas cochée" */
+    .quiz-checkbox:not(:checked) + label:after {
+        opacity   : 0;
+        transform : scale(0);
+    }
+
+    /* Aspect si "cochée" */
+    .quiz-checkbox:checked + label:after {
+        opacity   : 1;
+        transform : scale(1);
+    }
+
+    .quiz-next-box { text-align : center; }
+
+    .quiz-next {
+        position         : relative;
+        display          : inline-block;
+        width            : 20.9rem;
+        height           : 4rem;
+        line-height      : 4rem !important;
+        background-color : #78206e;
+        color            : #FFF;
+        font-family      : Arial;
+        font-size        : 1.2rem;
+        font-weight      : 700;
+        line-height      : 1.8rem;
+        text-transform   : uppercase;
+
+        &:after {
+            content    : ">";
+            position   : absolute;
+            display    : inline-block;
+            right      : 3rem;
+            transition : right .3s;
+        }
+
+        &:hover:after { right : 2rem; }
+    }
+}
